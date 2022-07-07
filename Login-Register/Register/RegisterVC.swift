@@ -19,6 +19,14 @@ class RegisterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.auth = Auth.auth()
+                
+    }
+    
+    func alert (title:String, menssage: String){
+        let alertController:UIAlertController = UIAlertController (title: title, message: menssage, preferredStyle: .alert)
+        let ok:UIAlertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(ok)
+        self.present(alertController, animated: true, completion: nil)
         
     }
 
@@ -30,9 +38,10 @@ class RegisterVC: UIViewController {
         self.auth?.createUser(withEmail: email, password: senha, completion: { ( result, error) in
             
             if error != nil {
-                print("Falha ao cadastrar")
+                self.alert(title: "Atenção", menssage: "Falha ao cadastrar")
             }else{
-                print("Sucesso ao cadastrar")
+                self.alert(title: "Parabens", menssage: "Sucesso ao cadastrar")
+               
             }
             
             
